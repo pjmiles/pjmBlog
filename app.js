@@ -1,7 +1,7 @@
 const express = require('express')
-const app = express();
 const mongoose = require('mongoose')
 
+const app = express()
 
 // connection to mongodb database
 
@@ -13,11 +13,16 @@ mongoose.connect("mongodb://localhost/pj_blog",
     console.log("Connected to mongodb!")
 })
 
-app.get('/', (req, res)=>{
-    res.send("Home page")
-})
+// middlewares
+app.use(express.urlencoded({extended: true}))
 
 
+
+
+// routes
+app.use(require("./routes/index"))
+app.use(require("./routes/compose"))
 
 // server configurations
-app.listen(5000, () => console.log("server stated listenting on port: 3000"))
+
+app.listen(3000, () => console.log("server stated listenting on port: 3000"))
