@@ -3,9 +3,12 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+
+const BlogPost = require("./backend_model/Blog_post");
+
 // connection to mongodb database
 
-mongoose.connect("mongodb://localhost/pj_blog", 
+mongoose.connect("mongodb://localhost:27017/pj_blog_new", 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -16,13 +19,17 @@ mongoose.connect("mongodb://localhost/pj_blog",
 // middlewares
 app.use(express.urlencoded({extended: true}))
 
-
-
+app.get("/blogPost", async(req, res) =>{
+    const blogPost = await BlogPost.find();
+    res.send({ data: blogPost })
+})
 
 // routes
-app.use(require("./routes/index"))
 app.use(require("./routes/compose"))
+app.use(require("./routes/comment"))
+
+
 
 // server configurations
 
-app.listen(3000, () => console.log("server stated listenting on port: 3000"))
+app.listen(8000, () => console.log("server stated listenting on port: 8000"))

@@ -1,19 +1,19 @@
 const router = require("express").Router();
 
-const Blog = require("../backend_model/Blog_post")
+const Blog = require("../backend_model/Comment_post")
 
 
-router.get("/compose", (req, res) => {
-    res.send("/")
+router.get("/comment", (req, res) => {
+    res.render("/")
 })
  
 // accepting composition from the post
 
 
-router.post("/compose", (req, res) => {
-    const { title, content, author } = req.body
+router.post("/comment", (req, res) => {
+    const { title, content } = req.body
     
-    const newBlog = new Blog({title, content, author})
+    const newBlog = new Blog({ title, content })
 
     // save the blog to the database
     newBlog.save()

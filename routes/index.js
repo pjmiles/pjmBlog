@@ -1,9 +1,9 @@
 const router = require("express").Router()
-const Blog = require('../model/Blog');
+// const Blog = require('../model/Blog');
 
-router.get("/", async(req, res) => {
-    const allBlogs = await Blog.find();
-    res.render("index", { blogs: allBlogs });
+
+router.get("/", (req, res) => {
+    res.send("/")
 })
 
 module.exports = router;
