@@ -1,0 +1,28 @@
+{
+  "name": "pjmBlog",
+  "version": "1.0.0",
+  "description": "A Simple Blog Page.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjmiles/pjmBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjmiles/pjmBlog/issues"
+  },
+  "homepage": "https://github.com/pjmiles/pjmBlog#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
