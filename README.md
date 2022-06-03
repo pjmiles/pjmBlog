@@ -1,2 +1,3 @@
 # pjmBlog
-A Blog page
+
+A Simple Blog Page.
