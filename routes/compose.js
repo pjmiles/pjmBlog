@@ -4,15 +4,17 @@ const Blog = require("../backend_model/Blog_post")
 
 
 router.get("/compose", (req, res) => {
-    res.send("/")
+    res.send("/Blog_post")
 })
  
 // accepting composition from the post
 
+router.get('/', (req, res) => {
+    res.json({ success: 'hello'})
+})
 
 router.post("/compose", (req, res) => {
     const { title, content, author } = req.body
-    
     const newBlog = new Blog({title, content, author})
 
     // save the blog to the database
@@ -24,7 +26,6 @@ router.post("/compose", (req, res) => {
     .catch((err) => console.log(err)); 
     // res.redirect('/');
 });
-
 
 
 module.exports = router;

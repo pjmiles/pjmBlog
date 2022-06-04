@@ -1,4 +1,4 @@
-POST http://localhost:8000/compose
+POST http://localhost:8000/
  Content-Type: application/json
 
  {

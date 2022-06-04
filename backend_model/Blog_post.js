@@ -13,6 +13,10 @@ const schema = new mongoose.Schema({
     author: {
         type: String,
         required: false
+    },
+    date:{
+        type: Date,
+        default:Date.now
     }
 });
 
