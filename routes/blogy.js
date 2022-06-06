@@ -1,58 +1,76 @@
 const router = require("express").Router();
-const Blog = require("../backend_model/Blog_post");
-const blogComment = require("../backend_model/Comment_post");
+const blog = require("../backend_model/blog_post");
+const blogcomment = require("../backend_model/Comment_post");
 
+// For blog post
+router.post("/blog", async (req, res) => {
+  const { title, content, author } = req.body;
+  console.info(req.body);
+  const newBlog = new blog({ title, content, author });
 
-// For Blog post
-router.post("/Blog", (req, res) => {
-    const { title, content, author } = req.body
-    console.info(req.body)
-    const newBlog = new Blog({ title, content, author })
+//   try and catch
+  try {
+      await newBlog.save()
+      res.send("blog saved")
+  } catch (err) {
+      res.json({ error: err })
+      console.log({ error: err })
+  }
+});
 
-    // save the blog to database
-    newBlog.save()
-    .then(() => {
-        res.send("Blog Saved Successfully");      
-    })
-    .catch((err) => res.json({ error: err })); 
-    // res.redirect('/');
+// to get all blog
+router.get("/blog", async (req, res) => {
+    try {
+       await blog.find()
+       res.send("blogs found!")
+    } catch (err) {
+        res.json({ error: err })
+        console.log({ error: err })
+    }
 });
 
 
-// To get all comments posted
-router.get("/Blog", (req, res) => {
-    Blog.find({}, (err, comments) => {
-        if(err){
-            res.send("Comment not found!")
-            next()
-        }
-        res.json(comments)
-    })
-})
- 
-// For comments to Blog posted
-router.post("/blogComment", (req, res) => {
-    const { title, content } = req.body
-    const postComment = new blogComment({ title, content })
 
-    // save the comment to database
-    postComment.save()
-    .then((data) => {
-        res.json(data)
-
-        res.send("Comment Sent");     
-    })
-    .catch((err) => res.json({ error: err })); 
-    // res.redirect('/');
-});
 
 // Get blog by id
-router.get("/Blog/:id", (req, res) =>{
-    Blog.post.findById(req.params.id)
-    .then(data => {
-        res.json(data)
-    }).catch(err => { res.json({ error: err })});
-})
+router.get("/blog/:id", async (req, res) => {
+    try {
+       await blog.findById(req.params.id)
+       res.send("blog found!")
+    } catch (err) {
+        res.json({ error: err })
+        console.log({ error: err })
+    }
+});
+
+
+// To post comments to blog
+router.post("/blogcomment", async (req, res) => {
+  const { title, content } = req.body;
+  const postComment = new blogcomment({ title, content });
+
+  // save the comment to database
+  try {
+      await postComment.save()
+      res.send("Comment Sent");
+  } catch (error) {
+    res.json({ error: err })
+    console.log({ error: err })
+  }
+});
+
+
+// To get comments posted by id
+router.get("/blogcomment/:id", async (req, res) => {
+    try {
+        await blogcomment.findById(req.params.id)
+        res.send("Comment found!")
+     } catch (err) {
+         res.json({ error: err })
+         console.log({ error: err })
+     }
+});
+
 
 
 module.exports = router;
