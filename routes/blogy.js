@@ -30,10 +30,8 @@ router.get("/blog", async (req, res) => {
 });
 
 
-
-
 // Get blog by id
-router.get("/blog/:id", async (req, res) => {
+router.get("/blog/:id/blogcomment", async (req, res) => {
     try {
        await blog.findById(req.params.id)
        res.send("blog found!")
@@ -70,6 +68,9 @@ router.get("/blogcomment/:id", async (req, res) => {
          console.log({ error: err })
      }
 });
+
+
+
 
 
 

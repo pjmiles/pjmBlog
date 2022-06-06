@@ -11,7 +11,11 @@ const commentSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        
+        author: {
+            type: mongoose.Types.ObjectId,
+            ref: "BlogPost"
+        },
+
         date:{
             type: Date,
             default:Date.now
