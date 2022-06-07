@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8000
 
 
 // connection to mongodb database
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pj_blog_new', 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/blognew', 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true

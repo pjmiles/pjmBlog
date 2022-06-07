@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const blog = require("../backend_model/blog_post");
-const blogcomment = require("../backend_model/Comment_post");
+const blog = require("../model/post");
+const blogcomment = require("../model/comment");
 
 // For blog post
-router.post("/blog", async (req, res) => {
+router.post("/blogs", async (req, res) => {
   const { title, content, author } = req.body;
   console.info(req.body);
   const newBlog = new blog({ title, content, author });
@@ -11,7 +11,7 @@ router.post("/blog", async (req, res) => {
 //   try and catch
   try {
       await newBlog.save()
-      res.send("blog saved")
+      res.send("Blog saved!")
   } catch (err) {
       res.json({ error: err })
       console.log({ error: err })
@@ -19,22 +19,21 @@ router.post("/blog", async (req, res) => {
 });
 
 // to get all blog
-router.get("/blog", async (req, res) => {
+router.get("/blogs", async (req, res) => {
     try {
-       await blog.find()
-       res.send("blogs found!")
+       const blogs = await blog.find({})
+       res.json({blogs})
     } catch (err) {
         res.json({ error: err })
         console.log({ error: err })
     }
 });
 
-
-// Get blog by id
-router.get("/blog/:id/blogcomment", async (req, res) => {
+// Get blogs by id
+router.get("/blogs/:id", async (req, res) => {
     try {
-       await blog.findById(req.params.id)
-       res.send("blog found!")
+      const blogid = await blog.findById(req.params.id)
+       res.json({blogid})
     } catch (err) {
         res.json({ error: err })
         console.log({ error: err })
@@ -43,34 +42,34 @@ router.get("/blog/:id/blogcomment", async (req, res) => {
 
 
 // To post comments to blog
-router.post("/blogcomment", async (req, res) => {
-  const { title, content } = req.body;
-  const postComment = new blogcomment({ title, content });
-
+router.post("/comments", async (req, res) => {
+  const { comment, content } = req.body;
+  const postComment = new blogcomment({ comment, content });
   // save the comment to database
   try {
       await postComment.save()
       res.send("Comment Sent");
-  } catch (error) {
+  } catch (err) {
     res.json({ error: err })
     console.log({ error: err })
   }
 });
 
 
-// To get comments posted by id
-router.get("/blogcomment/:id", async (req, res) => {
+// To get all comments
+router.get("/comments", async (req, res) => {
     try {
-        await blogcomment.findById(req.params.id)
-        res.send("Comment found!")
+       const commentid = await blogcomment.find(req.comment)
+
+        if(!commentid){
+            res.status(500).json({message: `commentid ${commentid} not found`})
+        }
+        res.json({commentid})
      } catch (err) {
          res.json({ error: err })
          console.log({ error: err })
      }
 });
-
-
-
 
 
 
