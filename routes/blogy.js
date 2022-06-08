@@ -11,7 +11,7 @@ router.post("/posts", async (req, res) => {
 //   try and catch
   try {
       await newBlog.save()
-      res.send("Blog saved!")
+      res.json({newBlog})
   } catch (err) {
       res.json({ error: err })
       console.log({ error: err })
