@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   return (
@@ -10,9 +10,9 @@ const Body = () => {
             <p className="card-text">Blog Content</p>
           </div>
           <textarea cols="30" row="10" className="mt-3 form-control"></textarea>
-          <a href="#" className="btn btn-primary">
+          <Link to="" className="btn btn-primary">
             Comment
-          </a>
+          </Link>
         </div>
       </div>
     </>
