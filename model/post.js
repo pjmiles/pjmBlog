@@ -10,9 +10,9 @@ const schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    author: {
+    post: {
         type: String,
-        required: false
+        required: true
     },
     date:{
         type: Date,
