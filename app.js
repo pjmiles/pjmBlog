@@ -3,6 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const blogRun = require('./routes/blogy')
+const port = 8000 
+
+
 
 // connection to mongodb database
 mongoose.connect(process.env.MONGODB_URI || process.env.db, 
@@ -24,4 +27,4 @@ app.use(blogRun)
 
 
 // server configurations
-app.listen(process.env.PORT, () => console.log(`server stated listenting on port: ${process.env.PORT}`))
+app.listen(process.env.PORT || port, () => console.log(`server stated listenting on port: ${process.env.PORT}`))
