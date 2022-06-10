@@ -7,9 +7,8 @@ const commentSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        comment: {
-            type: mongoose.Types.ObjectId,
-            ref: "post"
+        post: {
+            type: mongoose.Types.ObjectId
         },
 
         date:{

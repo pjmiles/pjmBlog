@@ -1,12 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-
 const app = express()
-const PORT = process.env.PORT || 8000
-
+const blogRun = require('./routes/blogy')
 
 // connection to mongodb database
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/blognew', 
+mongoose.connect(process.env.MONGODB_URI || process.env.db, 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -19,12 +18,10 @@ app.use(express.json()); // for data parsing
 app.use(express.urlencoded({ extended: false }))
 
 
-
 // routes
 app.use(require('./routes/index'))
-app.use(require('./routes/blogy'))
-
+app.use(blogRun)
 
 
 // server configurations
-app.listen(PORT, () => console.log(`server stated listenting on port: ${PORT}`))
+app.listen(process.env.PORT, () => console.log(`server stated listenting on port: ${process.env.PORT}`))
