@@ -1,23 +1,25 @@
 const mongoose = require("mongoose");
 
 // schema for posting blog
-const schema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
     title: {
         type: String,
+        trim: true,
         required: true
     },
     content: {
         type: String,
+        trim: true,
         required: true
     },
-    post: {
-        type: String,
-        required: true
-    },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
     date:{
         type: Date,
         default:Date.now
     }
 });
 
-module.exports = mongoose.model("post", schema);
+module.exports = mongoose.model("Post", postSchema);
