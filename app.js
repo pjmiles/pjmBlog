@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use(require("./routes/index"));
-app.use(Blog);
+app.use('/posts', Blog);
 
 // server configurations
 app.listen(process.env.PORT || port, () =>
