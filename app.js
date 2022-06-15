@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 const Blog = require("./routes/blogy");
 const port = 8000;
+const cors = require('cors')
 
 // connection to mongodb database
 mongoose.connect(
@@ -20,10 +21,11 @@ mongoose.connect(
 // middlewares
 app.use(express.json()); // for data parsing
 app.use(express.urlencoded({ extended: false }));
+app.use(cors())
 
 // routes
 app.use(require("./routes/index"));
-app.use('/posts', Blog);
+app.use("/routes", Blog);
 
 // server configurations
 app.listen(process.env.PORT || port, () =>
