@@ -22,12 +22,6 @@ const getPostById = asyncWrapper(async (req, res) => {
   res.json({ post });
 });
 
-// To post comments to blog
-const createCommentToPost = asyncWrapper(async (req, res) => {
-  const { comment, content } = req.body;
-  const postComment = new Comment({ comment, content });
-  await postComment.save();
-});
 
 // To get all comments
 const getAllComments = asyncWrapper(async (req, res) => {
@@ -53,7 +47,6 @@ module.exports = {
   createSinglePost,
   getAllPost,
   getPostById,
-  createCommentToPost,
   createNewComment,
   getCommentWithApost,
   getAllComments,
