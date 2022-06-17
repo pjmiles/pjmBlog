@@ -1,5 +1,5 @@
 {
-  "name": "pjmBlog",
+  "name": "pjmblog",
   "version": "1.0.0",
   "description": "A Simple Blog Page.",
   "main": "index.js",
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/pjmiles/pjmBlog#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.5"
   },
