@@ -22,6 +22,13 @@ app.use(express.json()); // for data parsing
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+
+//Home page
+app.get("/", (req, res) => {
+  res.send("Welcome to PJMiles Blog API");
+});
+
+
 // import routes
 const Blog = require("./routes/post");
 
